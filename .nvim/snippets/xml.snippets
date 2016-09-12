@@ -1,0 +1,73 @@
+# place
+snippet place
+	<place x="${1}" y="${2}" width="${3}in" height="${4}in">
+	    ${5}
+	</place>
+# lines
+snippet lines
+	<illustration width="75" height="2">
+		<lines>${0}</lines>
+	</illustration>
+# para
+snippet para
+	<para style="${1:default}">
+		${2}
+	</para>
+# blockTable
+snippet blockTable
+	<blockTable style="${1}">
+		<tr>
+			<td>
+				${2}
+			</td>
+		</tr>
+	</blockTable>
+# tr
+snippet tr
+	<tr>
+		<td>
+			${0}
+		</td>
+	</tr>
+# td
+snippet td
+	<td>
+		${0}
+	</td>
+#var
+snippet var
+	<%= ${0} %>
+# if
+snippet if
+	<% if ${1}: %>
+		${2}
+	<% end %>
+# else
+snippet el
+	<% else: %>
+		${0}
+	<% end %>
+# bold
+snippet b
+	<b>${0}</b>
+# italic
+snippet i
+	<i>${0}</i>
+# underline
+snippet u
+ 	<u>${0}</u>
+# Non-Breaking Space
+snippet nbs
+	&nbsp;
+# br
+snippet br
+	<br />
+# if
+snippet if
+	<% if ${0}: %>
+# end
+snippet end
+	<% end %>
+# else
+snippet else
+	<% else: %>

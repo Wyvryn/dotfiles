@@ -1,0 +1,30 @@
+[global_config]
+  title_transmit_bg_color = "#d30102"
+  focus = system
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#4e4e4e:#d68787:#5f865f:#d8af5f:#85add4:#d7afaf:#87afaf:#d0d0d0:#626262:#d75f87:#87af87:#ffd787:#add4fb:#ffafaf:#87d7d7:#e4e4e4"
+    visible_bell = True
+    background_image = None
+    background_darkness = 0.9
+    background_type = transparent
+    use_system_font = False
+    cursor_color = "#d0d0d0"
+    foreground_color = "#d0d0d0"
+    show_titlebar = False
+    font = Sauce Code Powerline Plus Nerd File Types 14
+    background_color = "#3a3a3a"
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]

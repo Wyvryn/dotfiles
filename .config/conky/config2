@@ -1,0 +1,18 @@
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 1
+
+TEXT
+
+[\
+#MPD
+{"full_text":"${if_mpd_playing}MPD\u276F${endif}","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${if_mpd_playing}${mpd_title}${endif}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+#SPOTIFY
+{"full_text":"${if_running spotify}SPOTIFY\u276F${endif}","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${if_running spotify}${exec ~/.config/conky/spotify.sh}${endif}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+#PIANOBAR
+{"full_text":"${if_running pianobar}PIANOBAR\u276F${endif}","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${if_running pianobar}${exec cat /home/mike/.i3/pianobar-song}${endif}","color":"\#FFFFFF","separator":false,"separator_block_width":2}\
+],

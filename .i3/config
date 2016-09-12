@@ -1,0 +1,184 @@
+# i3 config file (v4)
+# http://i3wm.org/docs/userguide.html
+# /etc/i3/config
+
+#########################
+# General Configuration #
+#########################
+
+# Mod1 = ALT
+set $mod Mod4
+
+# Start New Treminal
+bindsym $mod+Return exec termite
+
+# Horizontal Split L/R
+bindsym $mod+minus split v
+
+# Vertical Split T/B
+bindsym $mod+backslash split h
+
+# Reload i3 Settings
+bindsym $mod+Shift+c reload
+
+# Restart i3 In Place
+bindsym $mod+Shift+r restart
+
+# Logout of i3 While Preserving X
+bindsym $mod+Control+Delete exec i3-msg exit
+
+# Lockscreen and Suspend System
+bindsym XF86Launch6 exec i3lock && systemctl suspend
+
+# Switch Workspaces
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# Move Window to Workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# controls for Spotify
+bindsym $mod+Shift+Down exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+Shift+Left exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym $mod+Shift+Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# Lock Screen
+bindsym $mod+Up exec ~/.config/i3lock-fancy/lock
+
+#####################
+# Window Management #
+#####################
+# Kill focused window
+bindsym $mod+F4 kill
+
+# Toggle Fullscreen Focused Window
+bindsym $mod+KP_Add fullscreen
+
+# Change Window Focus
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+
+# Toggle Floating / Tiled Window
+bindsym $mod+Shift+space floating toggle
+
+# Move Floating Window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Use Mouse To Drag / Drop Floating Window
+floating_modifier $mod
+
+# Resize Floating Wl
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Make the currently focused window a scratchpad
+bindsym $mod+bracketleft move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+Shift+bracketleft scratchpad show
+
+
+##################
+# Audio / Visual #
+##################
+
+# Screen Shot
+bindsym Print exec scrot
+
+# Screen Brightness
+bindsym $mod+F5 exec xbacklight -dec 10
+bindsym $mod+F6 exec xbacklight -inc 10
+
+# Remove window borders
+for_window [class="^.*"] border pixel 0
+
+# Window Font
+# font pango:[family list] , [style options] , [size]
+#font pango:monoOne 10
+font pango:"Source Code Pro for Powerline" 9
+
+# Window Colors
+# Class             Border  Bkgrnd  Text    Indicator
+client.focused          #224257 #224257 #ffffff #3f8ac2
+client.focused_inactive     #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #292d2e #888888 #000000
+client.urgent           #d70a53 #d70a53 #ffffff #d70a53
+
+
+##############
+# Status Bar #
+##############
+
+bar {
+    position top
+    mode dock
+    tray_output none
+    font pango:Sauce Code Powerline 9
+    status_command ~/.config/conky/wrapper.sh
+    workspace_buttons no
+}
+bar {
+    position bottom
+    font pango:Sauce Code Powerline 9
+    status_command ~/.config/conky/wrapper_bottom.sh
+}
+
+#################
+# Start Up Apps #
+#################
+
+new_float normal
+new_window pixel
+hide_edge_borders both
+for_window [class="Google-chrome" title="Google Chrome"] border none
+for_window [class="^Opera"] border none
+for_window [class="^Conky"] border none
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+# xfce4-notify
+for_window [class="Xfce4-notifyd"] floating enable;border none; focus mode_toggle
+for_window [class="^Synapse$"] border none
+## shutdown menu
+bindsym $mod+Shift+p exec xfce4-session-logout
+# # xfce settings
+bindsym $mod+Shift+s exec xfce4-settings-manager
+
+for_window [class="^Spotify$"] floating enable
+#exec --no-startup-id compton -cCGb --backend xrender --vsync opengl
+#exec --no-startup-id compton -cCzG -t-3 -l-5 -r4 --backend xrender --unredir-if-possible
+exec --no-startup-id compton -cCzGb -t-3 -l-5 -r4 --backend xrender --unredir-if-possible --xrender-sync-fence
+exec --no-startup-id feh --bg-scale /home/mike/Pictures/mountain.jpg
+exec --no-startup-id ~/.config/i3lock-fancy/autolock.sh
+focus_follows_mouse no
+
+gaps inner 12

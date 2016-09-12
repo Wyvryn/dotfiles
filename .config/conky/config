@@ -1,0 +1,41 @@
+out_to_x no
+out_to_console yes
+short_units yes
+update_interval 1
+
+TEXT
+
+[\
+#DOMAIN
+# {"align": "left", "min_width": 1015, "full_text":"${exec printf '%q' $1 | xdotool getwindowfocus getwindowname}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+#DOMAIN
+{"full_text":"/home\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${fs_free /home}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+# CPU USAGE
+{"full_text":"\u276FCPU\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${freq_g 0}","color":"\#FFFFFF","separator":false,"separator_block_width":0},\
+{"full_text":"gHz","color":"\#EEEEEE","separator":false,"separator_block_width":2},\
+# CPU LOAD
+{"full_text":"\u276FLOAD\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${cpubar cpu0}","color":"\#FFFFFF","separator":false,"separator_block_width":0},\
+{"full_text":"","color":"\#EEEEEE","separator":false,"separator_block_width":2},\
+# MEM USED / TOTAL
+{"full_text":"\u276FMEM\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${membar}","color":"\#FFFFFF","separator":false,"separator_block_width":0},\
+{"full_text":"","color":"\#EEEEEE","separator":false,"separator_block_width":2},\
+# ETH0
+{"full_text":"${if_up eth0}\u276FETH0\u276F${endif}","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${if_up eth0}${addr eth0}${endif}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+# WLAN0
+{"full_text":"${if_existing /proc/net/route wlan0}\u276FWLAN0\u276F${endif}","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${if_existing /proc/net/route wlan0}${addr wlan0}${endif}","color":"\#FFFFFF","separator":false,"separator_block_width":2},\
+# BATTERY
+{"full_text":"\u276FBATTERY\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${battery_bar}","color":"\#EEEEEE","separator":false,"separator_block_width":2},\
+# DATE (DD-MM-YY)
+{"full_text":"\u276FDATE\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${time %m/%d/%y}","color":"\#EEEEEE","separator":false,"separator_block_width":2},\
+# TIME (HH-MM)
+{"full_text":"\u276FTIME\u276F","color":"\#0087af","separator":false,"separator_block_width":2},\
+{"full_text":"${time %I:%M%P}","color":"\#EEEEEE","separator":false}\
+],
