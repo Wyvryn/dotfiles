@@ -86,7 +86,7 @@ set guifont=Sauce\ Code\ Powerline\ Plus\ Nerd\ File\ Types\ 9
 syntax sync minlines=256
 
 autocmd BufEnter * set mouse=
-autocmd FileType python execute "set cc=" . join(range(91,335), ',')
+"autocmd FileType python execute "set cc=" . join(range(91,335), ',')
 
 let mapleader = "\<Space>"
 nmap <Leader><Leader> V
